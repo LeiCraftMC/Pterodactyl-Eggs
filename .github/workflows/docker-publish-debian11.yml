@@ -6,14 +6,16 @@ name: Debian11-Docker
 # documentation.
 
 on:
-  schedule:
-    - cron: '28 21 * * *'
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
+    paths:
+      - 'vps/debain11/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'vps/debain11/**'
 
 env:
   # Use docker.io for Docker Hub if empty
