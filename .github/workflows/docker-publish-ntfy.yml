@@ -1,4 +1,4 @@
-name: Publish Software/AzureCast
+name: Publish VPS/Debian11
 
 on:
   push:
@@ -6,11 +6,11 @@ on:
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
     paths:
-      - 'vps/debain11/**'
+      - 'software/ntfy/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'vps/debain11/**'
+      - 'software/ntfy/**'
 
 jobs:
   build:
@@ -30,7 +30,8 @@ jobs:
         with:
           registry: ghcr.io
           image-name: leicraftmc/pterodactyl-eggs
-          image-tag: debian11
-          context: ./vps/debain11
+          image-tag: ntfy
+          context: ./software/ntfy
           username: ${{ github.actor }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
+
