@@ -76,6 +76,7 @@ runs:
       # https://github.com/sigstore/cosign
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request' }}
+        shell: bash
         env:
           # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
           TAGS: ${{ inputs.registry }}/${{ inputs.image-name }}:${{ inputs.image-tag }}

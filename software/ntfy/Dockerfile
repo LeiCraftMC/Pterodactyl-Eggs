@@ -1,6 +1,6 @@
 FROM alpine
 
-RUN apk add --no-cache --update tzdata curl ca-certificates tar bash \
+RUN apk add --no-cache --update tzdata curl ca-certificates tar bash jq \
     && adduser --disabled-password --home /home/container container
 
 USER container
