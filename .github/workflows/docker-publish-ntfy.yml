@@ -34,5 +34,5 @@ jobs:
           image-tag: ntfy
           context: ./software/ntfy
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-token: ${{ secrets.PAT  }}
 

@@ -34,4 +34,4 @@ jobs:
           image-tag: debian11
           context: ./vps/debian11
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-token: ${{ secrets.PAT  }}

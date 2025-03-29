@@ -34,5 +34,5 @@ jobs:
           image-tag: azuracast
           context: ./software/azuracast
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          gh-token: ${{ secrets.PAT  }}
 
