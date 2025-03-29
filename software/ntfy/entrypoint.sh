@@ -39,7 +39,7 @@ function get_latest_version {
 
 function get_current_version {
     local version=$(./ntfy --help 2>/dev/null)
-    echo $version | grep -oP 'ntfy \K[0-9]+\.[0-9]+\.[0-9]+'
+    echo $version | sed -n 's/^ntfy \([0-9.]\+\).*/\1/p'
 }
 
 function download_ntfy {
