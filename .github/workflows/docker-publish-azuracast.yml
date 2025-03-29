@@ -32,7 +32,7 @@ jobs:
           registry: ghcr.io
           image-name: leicraftmc/pterodactyl-eggs
           image-tag: azuracast
-          context: ./software/azuracast
+          context: software/azuracast
           username: ${{ github.actor }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 

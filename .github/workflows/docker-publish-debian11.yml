@@ -32,6 +32,6 @@ jobs:
           registry: ghcr.io
           image-name: leicraftmc/pterodactyl-eggs
           image-tag: debian11
-          context: ./vps/debain11
+          context: vps/debain11
           username: ${{ github.actor }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
