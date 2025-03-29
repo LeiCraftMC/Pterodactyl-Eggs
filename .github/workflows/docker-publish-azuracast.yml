@@ -1,4 +1,4 @@
-name: Publish VPS/Debian11
+name: Publish Software/AzureCast
 
 on:
   workflow_dispatch:
