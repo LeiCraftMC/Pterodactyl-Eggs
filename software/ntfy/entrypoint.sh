@@ -67,13 +67,20 @@ function download_ntfy {
     cp -a ${name}/ntfy /home/container/ntfy
     chmod +x /home/container/ntfy
 
-    mkdir -p /home/container/conf
     cp -n ${name}/{client,server}/*.yml /home/container/conf
 
     rm "${name}.tar.gz"
     rm -rf $name
 
     echo "ntfy $version downloaded successfully."
+}
+
+function create_directories {
+    mkdir -p /home/container/conf
+    mkdir -p /home/container/logs
+    mkdir -p /home/container/data
+    mkdir -p /home/container/cache
+    mkdir -p /home/container/certs
 }
 
 function main {
@@ -88,6 +95,8 @@ function main {
     STARTUP_CMD=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
     extract_env_bool EXPERIMENTAL
     
+    create_directories
+
     LOCAL_VERSION=$(get_current_version)
 
     if [ "$VERSION" == "latest" ]; then
