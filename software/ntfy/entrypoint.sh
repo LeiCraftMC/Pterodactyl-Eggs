@@ -30,10 +30,10 @@ function get_latest_version {
 
     if [ "$include_prereleases" == "true" ]; then
         # Include prereleases
-        echo "$releases_json" | jq -r '.[0].tag_name' | cut -c2-
+        echo "$releases_json" | jq -r '.[0].tag_name'
     else
         # Exclude prereleases, find the first stable release
-        echo "$releases_json" | jq -r '[.[] | select(.prerelease == false)][0].tag_name' | cut -c2-
+        echo "$releases_json" | jq -r '[.[] | select(.prerelease == false)][0].tag_name'
     fi
 }
 
@@ -45,8 +45,8 @@ function get_current_version {
 function download_ntfy {
     local version=$1
     local arch=$2
-    local name=ntfy_${version}_${arch}
-    local url="https://github.com/binwiederhier/ntfy/releases/download/v${version}/${name}.tar.gz"
+    local name="ntfy_$(echo $version | cut -c2-)_${arch}"
+    local url="https://github.com/binwiederhier/ntfy/releases/download/${version}/${name}.tar.gz"
 
     echo "Downloading ntfy version $version for architecture $arch..."
 
@@ -58,19 +58,19 @@ function download_ntfy {
     fi
 
     echo "Download complete. Extracting..."
-    tar zxvf $name.tar.gz
+    tar zxvf "${name}.tar.gz"
     if [ $? -ne 0 ]; then
         echo "Failed to extract ntfy binary."
         exit 1
     fi
     
-    cp -a $name/ntfy /home/container/ntfy
+    cp -a ${name}/ntfy /home/container/ntfy
     chmod +x /home/container/ntfy
 
     mkdir -p /home/container/conf
-    cp -n $name/{client,server}/*.yml /home/container/conf
+    cp -n ${name}/{client,server}/*.yml /home/container/conf
 
-    rm $name.tar.gz
+    rm "${name}.tar.gz"
     rm -rf $name
 
     echo "ntfy $version downloaded successfully."
@@ -90,7 +90,7 @@ function main {
     
     LOCAL_VERSION=$(get_current_version)
 
-    if [ "v$VERSION" == "latest" ]; then
+    if [ "$VERSION" == "latest" ]; then
         
         REMOTE_VERSION=$(get_latest_version $EXPERIMENTAL)
 
