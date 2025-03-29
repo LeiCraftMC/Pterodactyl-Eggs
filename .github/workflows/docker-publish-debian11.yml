@@ -7,11 +7,11 @@ on:
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
     paths:
-      - 'vps/debain11/**'
+      - 'vps/debian11/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'vps/debain11/**'
+      - 'vps/debian11/**'
 
 jobs:
   build:
@@ -32,6 +32,6 @@ jobs:
           registry: ghcr.io
           image-name: leicraftmc/pterodactyl-eggs
           image-tag: debian11
-          context: vps/debain11
+          context: ./vps/debian11
           username: ${{ github.actor }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}

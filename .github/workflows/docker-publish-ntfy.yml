@@ -32,7 +32,7 @@ jobs:
           registry: ghcr.io
           image-name: leicraftmc/pterodactyl-eggs
           image-tag: ntfy
-          context: software/ntfy
+          context: ./software/ntfy
           username: ${{ github.actor }}
           gh-token: ${{ secrets.GITHUB_TOKEN }}
 
