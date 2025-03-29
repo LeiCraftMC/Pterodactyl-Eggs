@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-03-29T11:00:44+01:00",
+    "exported_at": "2025-03-29T11:14:51+01:00",
     "name": "ntfy",
     "author": "leicraft@leicraftmc.de",
     "description": null,
@@ -13,10 +13,10 @@
         "ntfy Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:ntfy"
     },
     "file_denylist": [],
-    "startup": ".\/ntfy serve --listen-http :{{SERVER_PORT}} --log-file \/home\/container\/logs\/ntfy.log --config \/home\/container\/conf\/server.yml --cache-file \/home\/container\/cache\/cache.db --attachment-cache-dir \/home\/container\/cache\/attachments --auth-file \/home\/container\/data\/user.db --web-push-file \/home\/container\/data\/webpush.db",
+    "startup": "if [[ -n \"{{NTFY_BASE_URL}}\" ]]; then AF=\"$AF --attachment-cache-dir \/home\/container\/cache\/attachments\"; fi;\r\n.\/ntfy serve --listen-http :{{SERVER_PORT}} --log-file \/home\/container\/logs\/ntfy.log --config \/home\/container\/conf\/server.yml --cache-file \/home\/container\/cache\/cache.db --auth-file \/home\/container\/data\/user.db --web-push-file \/home\/container\/data\/webpush.db $AF",
     "config": {
         "files": "{}",
-        "startup": "{}",
+        "startup": "{\r\n    \"done\": \"Listening on \"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
@@ -46,6 +46,16 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Base URL",
+            "description": "",
+            "env_variable": "NTFY_BASE_URL",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:255",
             "field_type": "text"
         }
     ]
