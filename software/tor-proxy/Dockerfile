@@ -11,7 +11,7 @@ RUN echo '@edge https://dl-cdn.alpinelinux.org/alpine/edge/community' >> /etc/ap
     rm -rf /var/cache/apk/*
 
 COPY --chown=container:container assets/services.ini /etc/supervisor.d/
-COPY --chown=container:container assets/torrc /home/container/tor/
+COPY --chown=container:container assets/torrc /etc/tor/torrc
 
 RUN mkdir -p /home/container/tor && \
     mv /var/lib/tor /home/container/tor/data && \
