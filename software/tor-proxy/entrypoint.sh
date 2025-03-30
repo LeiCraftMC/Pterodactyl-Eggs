@@ -66,7 +66,7 @@ function create_default_config {
 services:
 
 - name: socks5-proxy
-  addr: ":1080"
+  addr: ":$SERVER_PORT"
   handler:
     type: socks
     auther: auther-main
