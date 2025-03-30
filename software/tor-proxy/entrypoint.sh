@@ -59,6 +59,7 @@ function download_ntfy {
 
 function create_default_config {
     mkdir -p /home/container/conf
+    mkdir -p /home/container/tor-data
 
     if [ ! -f /home/container/conf/gost.yml ]; then
         echo "Creating default config file..."
