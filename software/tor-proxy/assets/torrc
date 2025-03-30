@@ -1,0 +1,9 @@
+HardwareAccel 1
+Log notice stdout
+DataDirectory /home/container/tor/data
+
+SocksPort 127.0.0.1:9151
+SocksPort [::1]:9151
+
+#DNSPort 127.0.0.1:8853
+#DNSPort [::1]:8853
