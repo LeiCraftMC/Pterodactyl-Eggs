@@ -92,6 +92,11 @@ chains:
       dialer:
         type: tcp
 
+log:
+  level: warn
+  format: text
+  output: stdout
+
 EOF
     #fi
 
