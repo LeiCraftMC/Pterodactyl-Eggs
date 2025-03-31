@@ -94,7 +94,7 @@ chains:
         type: tcp
 
 log:
-  level: warn
+  level: fatal
   format: text
   output: stdout
 
