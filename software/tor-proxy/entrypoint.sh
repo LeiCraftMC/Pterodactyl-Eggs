@@ -71,6 +71,7 @@ services:
   handler:
     type: socks
     auther: auther-main
+    chain: tor-backend
   listener:
     type: tcp
 
