@@ -120,7 +120,7 @@ function main {
 
     # Extract Startup CMD
     if [ -n "$STARTUP" ]; then
-        STARTUP_CMD=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
+        export STARTUP_CMD=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
     else
         echo "No STARTUP_CMD specified. Running fallback command..."
         export STARTUP_CMD="/home/container/gost -C /home/container/conf/gost.yml"
