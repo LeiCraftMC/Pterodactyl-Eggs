@@ -61,7 +61,7 @@ function create_default_config {
     mkdir -p /home/container/conf
     mkdir -p /home/container/tor-data
 
-    if [ ! -f /home/container/conf/gost.yml ]; then
+    #if [ ! -f /home/container/conf/gost.yml ]; then
         echo "Creating default config file..."
         cat <<EOF > /home/container/conf/gost.yml
 services:
@@ -93,7 +93,7 @@ chains:
         type: tcp
 
 EOF
-    fi
+    #fi
 
     if [ ! -f /home/container/conf/accounts ]; then
         echo "Creating default config file..."
