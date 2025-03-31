@@ -77,7 +77,7 @@ services:
 authers:
 - name: auther-main
   file:
-    path: /home/container/conf/accouns
+    path: /home/container/conf/accounts
 
 chains:
 
