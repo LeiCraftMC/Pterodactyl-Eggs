@@ -37,6 +37,16 @@
             "user_editable": true,
             "rules": "required|string|max:20",
             "field_type": "text"
+        },
+        {
+            "name": "HTTP Proxy Port",
+            "description": "",
+            "env_variable": "HTTP_PROXY_PORT",
+            "default_value": "8080",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
         }
     ]
 }

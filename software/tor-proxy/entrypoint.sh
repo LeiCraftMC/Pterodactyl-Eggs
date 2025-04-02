@@ -75,6 +75,15 @@ services:
   listener:
     type: tcp
 
+- name: http-proxy
+  addr: ":$HTTP_PROXY_PORT"
+  handler:
+    type: http
+    auther: auther-main
+    chain: tor-backend
+  listener:
+    type: tcp
+
 authers:
 - name: auther-main
   file:
