@@ -38,7 +38,7 @@ function get_latest_version {
 }
 
 function get_current_version {
-    jq -r .version /home/container/app/package.json
+    jq -r .version /home/container/app/package.json | tr -d '\n'
 }
 
 function download_kutt {
