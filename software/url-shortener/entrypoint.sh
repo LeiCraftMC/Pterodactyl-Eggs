@@ -123,6 +123,8 @@ function main {
 
     fi
 
+    export PORT=${SERVER_PORT:-3000}
+
     eval ${STARTUP_CMD}
 }
 
