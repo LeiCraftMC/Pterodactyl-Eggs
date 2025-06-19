@@ -38,8 +38,7 @@ function get_latest_version {
 }
 
 function get_current_version {
-    jq -r .version /home/container/app/package.json | tr -d '\n'
-}
+    cat /home/container/app/.version 2>/dev/null || echo "0.0.0"
 
 function download_kutt {
     local version=$1
@@ -72,6 +71,8 @@ function download_kutt {
     rm "${name}.tar.gz"
 
     echo "kutt $version downloaded successfully."
+
+    echo "$(echo $version | cut -c2-)" > /home/container/app/.version
 
     npm --prefix /home/container/app install
 
