@@ -74,6 +74,8 @@ function download_kutt {
     echo "kutt $version downloaded successfully."
 
     npm --prefix install /home/container/app
+
+    echo "Dependencies installed successfully."
 }
 
 function create_directories {
