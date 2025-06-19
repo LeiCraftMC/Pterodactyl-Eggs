@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-03-29T11:14:51+01:00",
+    "exported_at": "2025-06-19T18:32:18+02:00",
     "name": "URL-Shortener",
     "author": "leicraft@leicraftmc.de",
     "description": null,
@@ -13,7 +13,7 @@
         "URL-Shortener Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:url-shortener"
     },
     "file_denylist": [],
-    "startup": "if [[ -n \"{{NTFY_BASE_URL}}\" ]]; then AF=\"$AF --attachment-cache-dir \/home\/container\/cache\/attachments\"; fi;\r\n.\/ntfy serve --listen-http :{{SERVER_PORT}} --log-file \/home\/container\/logs\/ntfy.log --config \/home\/container\/conf\/server.yml --cache-file \/home\/container\/cache\/cache.db --auth-file \/home\/container\/data\/user.db --web-push-file \/home\/container\/data\/webpush.db $AF",
+    "startup": "npm i && npm run migrate && npm start",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Listening on \"\r\n}",

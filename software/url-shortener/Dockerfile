@@ -1,4 +1,6 @@
-FROM alpine
+FROM node:22-alpine
+
+ENV NODE_ENV=production
 
 RUN apk add --no-cache --update tzdata curl ca-certificates tar bash jq \
     && adduser --disabled-password --home /home/container container
