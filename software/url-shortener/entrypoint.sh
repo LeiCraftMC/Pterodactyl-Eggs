@@ -65,7 +65,7 @@ function download_kutt {
 
     rm -rf /home/container/app/
 
-    cp -R "${name}"/ /home/container/app
+    mv -R "${name}"/ /home/container/app
 
     chmod -R 775 /home/container/app
 
