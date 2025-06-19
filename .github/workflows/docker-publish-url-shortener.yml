@@ -1,4 +1,4 @@
-name: Publish Software/kutt
+name: Publish Software/url-shortener
 
 on:
   workflow_dispatch:
@@ -7,11 +7,11 @@ on:
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
     paths:
-      - 'software/kutt/**'
+      - 'software/url-shortener/**'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'software/kutt/**'
+      - 'software/url-shortener/**'
 
 jobs:
   build:
@@ -31,8 +31,8 @@ jobs:
         with:
           registry: ghcr.io
           image-name: leicraftmc/pterodactyl-eggs
-          image-tag: kutt
-          context: ./software/kutt
+          image-tag: url-shortener
+          context: ./software/url-shortener
           username: ${{ github.actor }}
           gh-token: ${{ secrets.PAT  }}
 
