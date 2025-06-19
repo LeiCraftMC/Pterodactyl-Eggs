@@ -1,6 +1,6 @@
 FROM node:22-alpine
 
-RUN apk add --no-cache --update tzdata curl ca-certificates tar bash jq \
+RUN apk add --no-cache --update tzdata curl ca-certificates tar bash jq rsync \
     && adduser --disabled-password --home /home/container container
 
 USER container
