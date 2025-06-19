@@ -73,7 +73,7 @@ function download_kutt {
 
     echo "kutt $version downloaded successfully."
 
-    npm --prefix install /home/container/app
+    npm --prefix /home/container/app install
 
     echo "Dependencies installed successfully."
 }
