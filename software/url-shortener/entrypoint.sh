@@ -39,6 +39,7 @@ function get_latest_version {
 
 function get_current_version {
     cat /home/container/app/.version 2>/dev/null || echo "0.0.0"
+}
 
 function download_kutt {
     local version=$1
