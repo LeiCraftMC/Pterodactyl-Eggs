@@ -13,7 +13,7 @@
         "URL-Shortener Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:url-shortener"
     },
     "file_denylist": [],
-    "startup": "npm i && npm run migrate && npm start",
+    "startup": "npm --prefix ./app i && npm --prefix ./app run migrate && --prefix ./app npm start",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Listening on \"\r\n}",
