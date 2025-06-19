@@ -72,6 +72,8 @@ function download_kutt {
     rm "${name}.tar.gz"
 
     echo "kutt $version downloaded successfully."
+
+    npm --prefix install /home/container/app
 }
 
 function create_directories {
