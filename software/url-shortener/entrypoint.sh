@@ -69,8 +69,6 @@ function download_kutt {
 
     chmod -R 775 /home/container/app
 
-    cp -R /assets/theme/* /home/container/app/custom/
-
     rm "${name}.tar.gz"
 
     echo "kutt $version downloaded successfully."
@@ -123,6 +121,8 @@ function main {
         fi
 
     fi
+
+    rsync -a --delete /assets/theme/ /home/container/app/custom/
 
     export PORT=${SERVER_PORT:-3000}
 
