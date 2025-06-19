@@ -83,7 +83,6 @@ function download_kutt {
 function create_directories {
     mkdir -p /home/container/app
     mkdir -p /home/container/data
-    mkdir -p /home/container/custom
 }
 
 function main {

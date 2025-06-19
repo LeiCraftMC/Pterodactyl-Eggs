@@ -1,0 +1,133 @@
+:root {
+  --bg-color: hsl(230, 15%, 10%);
+  --text-color: hsl(230, 15%, 85%);
+  --color-primary: hsl(260, 80%, 65%);
+  --outline-color: hsl(260, 100%, 75%);
+  --button-bg: linear-gradient(to right, #2b2b2b, #3a3a3a);
+  --button-bg-box-shadow-color: rgba(80, 80, 80, 0.5);
+  --button-bg-primary: linear-gradient(to right, hsl(260, 83%, 60%), hsl(260, 70%, 50%));
+  --button-bg-primary-box-shadow-color: hsla(260, 80%, 60%, 0.5);
+  --button-bg-secondary: linear-gradient(to right, hsl(220, 60%, 50%), hsl(220, 70%, 40%));
+  --button-bg-secondary-box-shadow-color: hsla(220, 65%, 45%, 0.5);
+  --button-action-shadow-color: hsla(230, 15%, 30%, 0.2);
+  --underline-color: hsl(230, 20%, 40%);
+  --secondary-text-color: hsl(230, 10%, 60%);
+  --send-icon-hover-color: hsl(220, 70%, 60%);
+  --send-spinner-icon-color: hsl(220, 15%, 70%);
+  --copy-icon-color: hsl(43, 85%, 60%);
+  --copy-icon-bg-color: hsl(43, 30%, 25%);
+  --copy-icon-shadow-color: hsla(43, 40%, 40%, 0.2);
+  --focus-outline-color: hsla(260, 80%, 70%, 0.5);
+  --checkbox-bg-color: hsl(220, 40%, 60%);
+  --input-shadow-color: hsla(230, 15%, 30%, 0.2);
+  --input-hover-shadow-color: hsla(230, 15%, 30%, 0.4);
+  --input-label-color: hsl(230, 15%, 85%);
+  --table-shadow-color: hsla(230, 20%, 20%, 0.3);
+  --table-bg-color: hsl(230, 12%, 14%);
+  --table-tr-border-color: hsl(230, 14%, 20%);
+  --table-tr-hover-bg-color: hsl(230, 14%, 18%);
+  --table-head-tr-border-color: hsl(230, 14%, 25%);
+  --table-status-gray-bg-color: hsl(230, 12%, 18%);
+}
+
+a.button.action.stats,
+button.action.stats {
+  background: hsl(260, 40%, 30%);
+}
+
+a.button.action.stats svg,
+button.action.stats svg {
+  stroke-width: 2.5;
+  stroke: hsl(260, 80%, 70%);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+  color: hsl(230, 15%, 85%);
+  background-color: hsl(230, 12%, 18%);
+  border: none;
+  border-radius: 100px;
+  border-bottom: 5px solid hsl(230, 10%, 30%);
+  box-shadow: 0 10px 35px var(--input-shadow-color);
+  transition: all 0.5s ease-out;
+}
+
+button.nav {
+  box-shadow: 0 0px 10px rgba(30, 30, 30, 0.4);
+  background: none;
+  background-color: hsl(230, 12%, 20%);
+  color: hsl(230, 15%, 85%);
+}
+
+table .tab a.active {
+        background: hsl(232.2, 15.6%, 28.8%);
+}
+
+table .tab a {
+        background: hsl(231.4, 15.2%, 18%);
+}
+
+button.nav:disabled {
+  background-color: #2d2d2d;
+}
+
+button.action.edit {
+  background-color: hsl(44.2, 18.8%, 19.8%);
+}
+
+button.action.delete {
+  background-color: hsl(0, 28%, 19.6%);
+}
+
+button.action.qrcode {
+        background: hsl(126.9, 29.2%, 34.9%);
+}
+
+button.action.qrcode svg {
+        fill: hsl(118.2, 100%, 61.8%);
+}
+
+#main-table-wrapper table tr.edit {
+        background-color: #282633;
+}
+
+button {
+        color: #bbb;
+}
+
+.dialog .box {
+        background: hsl(230, 15%, 10%);
+}
+
+#stats {
+        background: hsl(230, 15.4%, 15.3%);
+}
+
+svg.map path {
+        fill: hsl(229.3, 25.9%, 21.2%);
+        stroke: hsl(230.8, 16.9%, 15.1%);
+}
+
+select.table-input {
+        background: hsl(231.4, 15.2%, 18%);
+}
+
+table {
+  background-color: hsl(230, 12%, 14%);
+}
+
+#main-table-wrapper table tbody td.right-fade:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 16px;
+  background: linear-gradient(to left, hsl(230, 12%, 14%), rgba(20, 20, 20, 0.0));
+}
+
+#main-table-wrapper table tbody tr:hover td.right-fade:after {
+  background: linear-gradient(to left, var(--table-tr-hover-bg-color), rgba(20, 20, 20, 0.001));
+}

@@ -9,6 +9,7 @@ ENV  USER=container HOME=/home/container
 WORKDIR /home/container
     
 COPY ./entrypoint.sh /entrypoint.sh
+COPY ./theme /home/container/custom
 
 ENV NODE_ENV=production
 
