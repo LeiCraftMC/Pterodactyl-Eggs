@@ -124,6 +124,11 @@ function main {
 
     rsync -a --delete /assets/theme/ /home/container/app/custom/
 
+    set -a
+    source /home/container/.env
+    set +a
+
+
     export PORT=${SERVER_PORT:-3000}
 
     eval ${STARTUP_CMD}
