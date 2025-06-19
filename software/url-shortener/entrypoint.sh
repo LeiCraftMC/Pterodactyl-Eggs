@@ -38,18 +38,16 @@ function get_latest_version {
 }
 
 function get_current_version {
-    jq -r .version package.json
+    jq -r .version /home/container/app/package.json
 }
 
 function download_kutt {
     local version=$1
     local arch=$2
-    local name="kutt_$(echo $version | cut -c2-)_${arch}"
+    local name="kutt-$(echo $version | cut -c2-)"
     local url="https://github.com/thedevs-network/kutt/archive/refs/tags/${version}.tar.gz"
 
     echo "Downloading kutt version $version for architecture $arch..."
-
-    cd /home/container/app
 
     http_response_code="$(curl --write-out '%{http_code}' -sL -o $name.tar.gz "$url")"
 
@@ -64,6 +62,9 @@ function download_kutt {
         echo "Failed to extract kutt"
         exit 1
     fi
+
+    cp -R "${name}"/* /home/container/app/
+
     chmod -R 775 /home/container/app
 
     rm "${name}.tar.gz"
