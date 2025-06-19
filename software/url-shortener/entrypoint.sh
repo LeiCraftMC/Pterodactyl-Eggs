@@ -63,6 +63,8 @@ function download_kutt {
         exit 1
     fi
 
+    rm -rf /home/container/app/
+
     cp -R "${name}"/* /home/container/app/
 
     chmod -R 775 /home/container/app
