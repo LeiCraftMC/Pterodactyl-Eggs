@@ -73,7 +73,7 @@ function download_kutt {
 
     echo "kutt $version downloaded successfully."
 
-    echo "$(echo $version | cut -c2-)" > /home/container/app/.version
+    echo -n "$(echo $version | cut -c2-)" > /home/container/app/.version
 
     npm --prefix /home/container/app install
 
