@@ -69,7 +69,7 @@ function download_kutt {
 
     chmod -R 775 /home/container/app
 
-    cp -R /home/container/theme/* /home/container/app/custom/
+    cp -R /assets/theme/* /home/container/app/custom/
 
     rm "${name}.tar.gz"
 
