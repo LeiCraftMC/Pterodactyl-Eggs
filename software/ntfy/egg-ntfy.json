@@ -13,7 +13,7 @@
         "ntfy Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:ntfy"
     },
     "file_denylist": [],
-    "startup": "if [[ -n \"{{NTFY_BASE_URL}}\" ]]; then AF=\"$AF --attachment-cache-dir \/home\/container\/cache\/attachments\"; fi;\r\n.\/ntfy serve --listen-http :{{SERVER_PORT}} --log-file \/home\/container\/logs\/ntfy.log --config \/home\/container\/conf\/server.yml --cache-file \/home\/container\/cache\/cache.db --auth-file \/home\/container\/data\/user.db --web-push-file \/home\/container\/data\/webpush.db $AF",
+    "startup": "if [[ -n \"{{NTFY_BASE_URL}}\" ]]; then AF=\"$AF --attachment-cache-dir \/home\/container\/cache\/attachments\"; fi; .\/ntfy serve --listen-http :{{SERVER_PORT}} --log-file \/home\/container\/logs\/ntfy.log --config \/home\/container\/conf\/server.yml --cache-file \/home\/container\/cache\/cache.db --auth-file \/home\/container\/data\/user.db --web-push-file \/home\/container\/data\/webpush.db $AF",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Listening on \"\r\n}",
