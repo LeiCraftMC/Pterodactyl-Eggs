@@ -64,7 +64,6 @@ function download_app {
         exit 1
     fi
     
-    cp -a ${name}/glance /home/container/glance
     chmod +x /home/container/glance
 
     rm "${name}.tar.gz"
