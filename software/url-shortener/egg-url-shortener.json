@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-06-19T18:32:18+02:00",
+    "exported_at": "2025-08-31T01:22:07+02:00",
     "name": "URL-Shortener",
     "author": "leicraft@leicraftmc.de",
     "description": null,
@@ -13,10 +13,10 @@
         "URL-Shortener Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:url-shortener"
     },
     "file_denylist": [],
-    "startup": "npm --prefix ./app run migrate && npm --prefix ./app start",
+    "startup": "npm --prefix .\/app run migrate && npm --prefix .\/app start",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"Listening on \"\r\n}",
+        "startup": "{\r\n    \"done\": \"> Ready on \"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
