@@ -3,9 +3,9 @@
 function check_cpu_arch {
     local arch=$(uname -m)
     if [ "$arch" = "x86_64" ]; then
-        declare -g ARCH="linux_amd64"
+        declare -g ARCH="linux-amd64"
     elif [ "$arch" = "aarch64" ]; then
-        declare -g ARCH="linux_arm64"
+        declare -g ARCH="linux-arm64"
     else
         echo "Unsupported architecture: $arch"
         exit 1
@@ -23,7 +23,7 @@ function extract_env_bool {
 
 function get_latest_version {
     local include_prereleases=$1
-    local api_url="https://api.github.com/repos/binwiederhier/ntfy/releases"
+    local api_url="https://api.github.com/repos/glanceapp/glance/releases"
 
     # Fetch releases from GitHub API
     local releases_json=$(curl -s "$api_url")
@@ -38,49 +38,54 @@ function get_latest_version {
 }
 
 function get_current_version {
-    local version=$(./ntfy --help 2>/dev/null)
-    echo "$version" | sed -n 's/^ntfy \([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p'
+    local version=$(./glance -v 2>/dev/null)
+    echo $version | cut -d ' ' -f 2
 }
 
 function download_app {
     local version=$1
     local arch=$2
-    local name="ntfy_$(echo $version | cut -c2-)_${arch}"
-    local url="https://github.com/binwiederhier/ntfy/releases/download/${version}/${name}.tar.gz"
+    local name="glance-${arch}"
+    local url="https://github.com/glanceapp/glance/releases/download/${version}/${name}.tar.gz"
 
-    echo "Downloading ntfy version $version for architecture $arch..."
+    echo "Downloading glance version $version for architecture $arch..."
 
     http_response_code="$(curl --write-out '%{http_code}' -sL -o $name.tar.gz "$url")"
 
     if [ "$http_response_code" != "200" ]; then
-        echo "Failed to download ntfy binary. HTTP response code: $http_response_code"
+        echo "Failed to download glance binary. HTTP response code: $http_response_code"
         exit 1
     fi
 
     echo "Download complete. Extracting..."
     tar zxvf "${name}.tar.gz"
     if [ $? -ne 0 ]; then
-        echo "Failed to extract ntfy binary."
+        echo "Failed to extract glance binary."
         exit 1
     fi
     
-    cp -a ${name}/ntfy /home/container/ntfy
-    chmod +x /home/container/ntfy
-
-    cp -n ${name}/{client,server}/*.yml /home/container/conf
+    cp -a ${name}/glance /home/container/glance
+    chmod +x /home/container/glance
 
     rm "${name}.tar.gz"
     rm -rf $name
 
-    echo "ntfy $version downloaded successfully."
+    echo "glance $version downloaded successfully."
 }
 
 function create_directories {
     mkdir -p /home/container/conf
-    mkdir -p /home/container/logs
-    mkdir -p /home/container/data
-    mkdir -p /home/container/cache
-    mkdir -p /home/container/certs
+}
+
+function download_base_conf {
+    local version=$1
+    local url="https://raw.githubusercontent.com/glanceapp/glance/refs/tags/${version}/docs/glance.yml"
+
+    if [[ -f /home/container/conf/glance.yml ]]; then
+        echo "Base config file already exists. Skipping download."
+    else
+        curl -o /home/container/conf/glance.yml "$url"
+    fi
 }
 
 function main {
@@ -105,17 +110,17 @@ function main {
 
         if [ "$REMOTE_VERSION" != "v$LOCAL_VERSION" ]; then
             echo "New version available: $REMOTE_VERSION. Downloading..."
-            download_app
-         $REMOTE_VERSION $ARCH
+            download_app $REMOTE_VERSION $ARCH
+            download_base_conf $REMOTE_VERSION
         else
             echo "The latest version is already installed. Continuing..."
         fi
     else
         
-        if [[ "v$VERSION" != "v$LOCAL_VERSION" ]]; then
+        if [[ "v$VERSION" != "$LOCAL_VERSION" ]]; then
             echo "Requested version $VERSION is not installed. Downloading..."
-            download_app
-         v$VERSION $ARCH
+            download_app v$VERSION $ARCH
+            download_base_conf v$VERSION
         else
             echo "Requested version $VERSION is already installed. Continuing..."
         fi
