@@ -107,7 +107,7 @@ function main {
         
         REMOTE_VERSION=$(get_latest_version $EXPERIMENTAL)
 
-        if [ "$REMOTE_VERSION" != "v$LOCAL_VERSION" ]; then
+        if [ "$REMOTE_VERSION" != "$LOCAL_VERSION" ]; then
             echo "New version available: $REMOTE_VERSION. Downloading..."
             download_app $REMOTE_VERSION $ARCH
             download_base_conf $REMOTE_VERSION
