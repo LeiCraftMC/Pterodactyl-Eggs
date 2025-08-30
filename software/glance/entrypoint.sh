@@ -74,16 +74,21 @@ function download_app {
 
 function create_directories {
     mkdir -p /home/container/conf
+    mkdir -p /home/container/samples
 }
 
 function download_base_conf {
     local version=$1
     local url="https://raw.githubusercontent.com/glanceapp/glance/refs/tags/${version}/docs/glance.yml"
 
+    if [[ ! -f /home/container/samples/glance.yml ]]; then
+        curl -o /home/container/samples/glance.yml "$url"
+    fi
+
     if [[ -f /home/container/conf/glance.yml ]]; then
         echo "Base config file already exists. Skipping download."
     else
-        curl -o /home/container/conf/glance.yml "$url"
+        cp /home/container/samples/glance.yml /home/container/conf/glance.yml
     fi
 }
 
