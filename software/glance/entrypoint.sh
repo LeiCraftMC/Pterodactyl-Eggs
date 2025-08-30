@@ -81,9 +81,7 @@ function download_base_conf {
     local version=$1
     local url="https://raw.githubusercontent.com/glanceapp/glance/refs/tags/${version}/docs/glance.yml"
 
-    if [[ ! -f /home/container/samples/glance.yml ]]; then
-        curl -o /home/container/samples/glance.yml "$url"
-    fi
+    curl -o /home/container/samples/glance.yml "$url"
 
     if [[ -f /home/container/conf/glance.yml ]]; then
         echo "Base config file already exists. Skipping download."
