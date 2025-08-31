@@ -75,6 +75,7 @@ function download_app {
 function create_directories {
     mkdir -p /home/container/conf
     mkdir -p /home/container/samples
+    mkdir -p /home/container/assets
 }
 
 function download_base_conf {
