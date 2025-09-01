@@ -80,6 +80,18 @@ function download_kutt {
     echo "Dependencies installed successfully."
 }
 
+function set_default_config {
+    cp /home/container/app/.example.env /home/container/example.env
+
+    if [ ! -f /home/container/.env ]; then
+        cp /home/container/example.env /home/container/.env
+    fi
+}
+
+function install_theme {
+    rsync -a --delete /assets/theme/ /home/container/app/custom/
+}
+
 function create_directories {
     mkdir -p /home/container/app
     mkdir -p /home/container/data
@@ -122,7 +134,8 @@ function main {
 
     fi
 
-    rsync -a --delete /assets/theme/ /home/container/app/custom/
+    install_theme
+    set_default_config
 
     set -a
     source /home/container/.env
