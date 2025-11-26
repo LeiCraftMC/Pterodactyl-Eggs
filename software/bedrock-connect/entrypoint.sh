@@ -105,12 +105,12 @@ function create_directories {
         touch /home/container/bedrock-connect/config.yml
     fi
 
-    if [ ! -f /home/container/bedrock-connect/featured_server_ips.json ]; then
-        echo "{}" > /home/container/bedrock-connect/featured_server_ips.json
-    fi
-
     if [ ! -f /home/container/bedrock-connect/custom_servers.json ]; then
         echo "{}" > /home/container/bedrock-connect/custom_servers.json
+    fi
+
+    if [ ! -f /home/container/bedrock-connect/featured_server_ips.json ]; then
+        echo "{}" > /home/container/bedrock-connect/featured_server_ips.json
     fi
 
     if [ ! -f /home/container/bedrock-connect/language.json ]; then
