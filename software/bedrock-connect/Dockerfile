@@ -1,4 +1,4 @@
-FROM openjdk:26-ea-jdk-trixie
+FROM openjdk:21-ea-jdk-bookworm
 
 RUN apt update && apt install -y tzdata curl ca-certificates supervisor tar bash jq rsync \
     && adduser --disabled-password --home /home/container container
