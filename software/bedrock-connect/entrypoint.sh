@@ -100,6 +100,23 @@ function download_mcxboxbroadcast {
 function create_directories {
     mkdir -p /home/container/bedrock-connect
     mkdir -p /home/container/mcxboxbroadcast
+
+    if [ ! -f /home/container/bedrock-connect/config.yml ]; then
+        touch /home/container/bedrock-connect/config.yml
+    fi
+
+    if [ ! -f /home/container/bedrock-connect/featured_server_ips.json ]; then
+        echo "{}" > /home/container/bedrock-connect/featured_server_ips.json
+    fi
+
+    if [ ! -f /home/container/bedrock-connect/custom_servers.json ]; then
+        echo "{}" > /home/container/bedrock-connect/custom_servers.json
+    fi
+
+    if [ ! -f /home/container/bedrock-connect/language.json ]; then
+        echo "{}" > /home/container/bedrock-connect/language.json
+    fi
+
 }
 
 
@@ -174,7 +191,7 @@ function main {
     update_if_needed_bedrock_connect
     update_if_needed_mcxboxbroadcast
 
-    supervisord -n -c /etc/supervisor.d/services.ini
+    supervisord -c /etc/supervisor.d/services.ini
 
     eval ${STARTUP_CMD}
 
