@@ -102,9 +102,9 @@ function create_directories {
     mkdir -p /home/container/mcxboxbroadcast
 
     if [ ! -f /home/container/bedrock-connect/config.yml ]; then
-        echo "custom_servers=/home/container/bedrock-connect/custom_servers.json" > /home/container/bedrock-connect/config.yml
-        echo "featured_server_ips=/home/container/bedrock-connect/featured_server_ips.json" >> /home/container/bedrock-connect/config.yml
-        echo "language=/home/container/bedrock-connect/language.json" >> /home/container/bedrock-connect/config.yml
+        echo "custom_servers: '/home/container/bedrock-connect/custom_servers.json'" > /home/container/bedrock-connect/config.yml
+        echo "featured_server_ips: '/home/container/bedrock-connect/featured_server_ips.json'" >> /home/container/bedrock-connect/config.yml
+        echo "language: '/home/container/bedrock-connect/language.json'" >> /home/container/bedrock-connect/config.yml
     fi
 
     if [ ! -f /home/container/bedrock-connect/custom_servers.json ]; then
