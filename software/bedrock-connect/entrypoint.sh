@@ -191,7 +191,7 @@ function main {
     update_if_needed_bedrock_connect
     update_if_needed_mcxboxbroadcast
 
-    supervisord -c /etc/supervisor.d/services.ini
+    supervisord -c /etc/supervisor.d/services.ini &
 
     eval ${STARTUP_CMD}
 
