@@ -195,6 +195,9 @@ function main {
 
     supervisord -c /etc/supervisor.d/services.ini &
 
+    # Sleep 1 second to allow supervisord to start
+    sleep 1
+
     eval ${STARTUP_CMD}
 
     # STARTUP_CMD should be "supervisord -c /etc/supervisor.d/services.ini"
