@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-ea-jdk-alpine
 
 RUN apk -U upgrade && apk add --no-cache --update tzdata curl ca-certificates supervisor tar bash jq rsync \
     && adduser --disabled-password --home /home/container container
