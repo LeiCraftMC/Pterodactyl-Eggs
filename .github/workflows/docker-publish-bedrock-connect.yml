@@ -1,0 +1,38 @@
+name: Publish Software/bedrock-connect
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+    paths:
+      - 'software/bedrock-connect/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'software/bedrock-connect/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Docker build and push
+        uses: ./.github/workflows/docker-build-and-push
+        with:
+          registry: ghcr.io
+          image-name: leicraftmc/pterodactyl-eggs
+          image-tag: bedrock-connect
+          context: ./software/bedrock-connect
+          username: ${{ github.actor }}
+          gh-token: ${{ secrets.PAT  }}
+
