@@ -1,6 +1,6 @@
-FROM openjdk:17-ea-jdk-alpine
+FROM openjdk:26-ea-jdk-trixie
 
-RUN apk -U upgrade && apk add --no-cache --update tzdata curl ca-certificates supervisor tar bash jq rsync \
+RUN apt update && apt install -y tzdata curl ca-certificates supervisor tar bash jq rsync \
     && adduser --disabled-password --home /home/container container
 
 COPY --chown=container:container assets/services.ini /etc/supervisor.d/
