@@ -13,7 +13,7 @@
         "Bedrock Connect Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:bedrock-connect"
     },
     "file_denylist": [],
-    "startup": "supervisord -c \/etc\/supervisor.d\/services.ini",
+    "startup": "supervisorctl",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Creation of Xbox LIVE session was successful!\"\r\n}",
