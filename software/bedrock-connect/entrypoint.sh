@@ -67,7 +67,7 @@ function download_bedrock_connect {
 
     rm -rf $name
 
-    echo -n "$(echo $version | cut -c2-)" > /home/container/bedrock-connect/.version
+    echo -n "$(echo $version)" > /home/container/bedrock-connect/.version
 
     echo "bedrock-connect $version downloaded successfully."
 }
@@ -92,7 +92,7 @@ function download_mcxboxbroadcast {
 
     rm -rf $name
 
-    echo -n "$(echo $version | cut -c2-)" > /home/container/mcxboxbroadcast/.version
+    echo -n "$(echo $version)" > /home/container/mcxboxbroadcast/.version
 
     echo "mcxboxbroadcast $version downloaded successfully."
 }
