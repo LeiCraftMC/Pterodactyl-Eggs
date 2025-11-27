@@ -30,6 +30,8 @@ async fn main() {
         api::start_api().await;
     });
 
+    tracing::info!(target: "supervisor", "supervisor started successfully");
+
     tokio::select! {
         proxy_result = proxy_task => {
             match proxy_result {
