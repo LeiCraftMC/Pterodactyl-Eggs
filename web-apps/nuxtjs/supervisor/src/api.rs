@@ -8,7 +8,7 @@ use axum::{
 use serde::{Deserialize, Serialize};
 
 pub async fn start_api() {
-    let app = Router::new().route("/webhook/update", post(webhook_update));
+    let app = Router::new().route("/_supervisor/webhook/update", post(webhook_update));
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:19180")
         .await

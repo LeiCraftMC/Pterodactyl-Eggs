@@ -2,16 +2,22 @@
 mod api;
 mod proxy;
 
-// fn init_tracing() {
+use tracing_subscriber::fmt::format::FmtSpan;
+use tracing_subscriber::EnvFilter;
 
-//     // Ignore errors when the global subscriber is already set (e.g. in tests).
-//     let _ = tracing_subscriber::fmt::try_init();
-// }
+fn init_tracing() {
+    let filter = EnvFilter::try_from_default_env()
+        .unwrap_or_else(|_| EnvFilter::new("info")); // fallback to debug level
+
+    tracing_subscriber::fmt()
+        .with_env_filter(filter)
+        .with_span_events(FmtSpan::CLOSE) // optional, log spans
+        .init();
+}
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt::init();
-    // init_tracing();
+    init_tracing();
 
     let proxy_task = tokio::task::spawn_blocking(|| proxy::start_proxy());
     let api_task = tokio::spawn(async {
