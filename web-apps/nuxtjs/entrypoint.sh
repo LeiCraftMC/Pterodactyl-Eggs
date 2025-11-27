@@ -60,7 +60,7 @@ function clone_git_repo_if_needed {
 
     if [ ! -d "/home/container/app" ]; then
         echo "Cloning Git repository from ${GIT_REPO_URL}..."
-        
+        echo $FULL_GIT_REPO_URL
         if [ -n "${GIT_BRANCH}" ]; then
             git clone --single-branch --branch "${GIT_BRANCH}" "${FULL_GIT_REPO_URL}" /home/container/.app/git-repo
         else

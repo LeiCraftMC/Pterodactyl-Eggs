@@ -4,7 +4,7 @@ use std::sync::RwLock;
 
 #[derive(Debug)]
 struct AppState {
-    currentMainInstance: String
+    currentMainInstance: String,
     instance1Proc: Option<utils::CommandHandle>,
     instance2Proc: Option<utils::CommandHandle>,
 }
