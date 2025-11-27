@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-RUN apt-get update && apt-get install -y tzdata curl ca-certificates git tar bash jq \
+RUN apt-get update && apt-get install -y tzdata curl ca-certificates git tar bash jq unzip \
     && adduser --disabled-password --home /home/container container
 
 COPY ./supervisor/target/release/supervisor /usr/bin/supervisor
