@@ -68,17 +68,6 @@ function clone_git_repo_if_needed {
     fi
 }
 
-function pull_latest_git_changes {
-    if [ -d "/home/container/.app/git-repo/.git" ]; then
-        echo "Pulling latest changes from Git repository..."
-        cd /home/container/.app/git-repo
-        git pull
-        cd /home/container
-    else 
-        echo "No Git repository found to pull changes from."
-        exit 1
-    fi
-}
 
 function main {
 
@@ -90,7 +79,9 @@ function main {
     create_directories
 
     clone_git_repo_if_needed
-    pull_latest_git_changes
+
+    /usr/local/share/supervisor/scripts/pull_latest_git_changes.sh
+    /usr/local/share/supervisor/scripts/create_new_build.sh
 
     # Extract Startup CMD
     STARTUP_CMD=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
