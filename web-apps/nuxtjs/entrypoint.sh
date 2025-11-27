@@ -1,12 +1,16 @@
 #!/bin/bash
 
 # Pterodactyl Custom ENV Variables:
+
 # GIT_REPO_URL - The Git repository URL to clone if the /home/container/app directory does not exist.
 # GIT_BRANCH - The branch to clone from the Git repository.
 # GIT_USERNAME - The username for Git authentication (if needed).
 # GIT_ACCESS_TOKEN - The access token or password for Git authentication (if needed).
+
 # INSTALL_NODE_PACKAGES - Additional packages to install via apt-get.
 # UNINSTALL_NODE_PACKAGES - Additional packages to uninstall via apt-get.
+
+# SUPERVISOR_API_KEY - The API key for authenticating requests to the supervisor API.
 
 function install_or_update_bun {
     if [ ! -f /home/container/.bun/bin/bun ]; then
