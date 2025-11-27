@@ -3,6 +3,7 @@ pub mod api;
 pub mod instance_handler;
 pub mod proxy;
 pub mod utils;
+pub mod runtime_cli;
 
 use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
@@ -21,6 +22,8 @@ async fn main() {
     init_tracing();
 
     instance_handler::InstanceHandler::startup().await;
+
+    tokio::spawn(runtime_cli::start());
 
     let proxy_task = tokio::task::spawn_blocking(|| proxy::start_proxy());
     let api_task = tokio::spawn(async {

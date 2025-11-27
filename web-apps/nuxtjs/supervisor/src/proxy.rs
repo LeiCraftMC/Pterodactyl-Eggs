@@ -6,6 +6,7 @@ use std::{
 use async_trait::async_trait;
 use once_cell::sync::Lazy;
 use pingora::prelude::*;
+use pingora::upstreams::peer::Peer;
 
 const DEFAULT_LISTEN_ADDR: &str = "0.0.0.0:19130";
 const DEFAULT_WORLD_BACKEND: &str = "127.0.0.1:19131";
@@ -94,12 +95,12 @@ pub fn set_world_backend(addr: &str) -> Result<()> {
     Ok(())
 }
 
-// pub fn get_world_backend() -> Option<String> {
-//     WORLD_BACKEND
-//         .read()
-//         .ok()
-//     .map(|peer| peer.address().to_string())
-// }
+pub fn current_world_backend() -> Option<String> {
+    WORLD_BACKEND
+        .read()
+        .ok()
+        .map(|peer| peer.address().to_string())
+}
 
 fn validate_backend(addr: &str) -> Result<()> {
     addr.to_socket_addrs()

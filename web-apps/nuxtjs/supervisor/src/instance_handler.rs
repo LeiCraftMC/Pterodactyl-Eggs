@@ -23,6 +23,15 @@ static STATE: Lazy<RwLock<AppState>> = Lazy::new(|| {
     })
 });
 
+#[derive(Clone, Debug)]
+pub struct InstanceStatus {
+    pub current_main_instance: Option<String>,
+    pub instance1_running: bool,
+    pub instance2_running: bool,
+    pub update_in_progress: bool,
+    pub queued_update_requests: usize,
+}
+
 pub struct InstanceHandler {}
 
 impl InstanceHandler {
@@ -82,6 +91,44 @@ impl InstanceHandler {
         Self::perform_update_sequence().await;
 
         Self::process_next_queued_update();
+    }
+
+    pub fn status_snapshot() -> InstanceStatus {
+        let state = STATE.read().unwrap();
+        InstanceStatus {
+            current_main_instance: if state.current_main_instance.is_empty() {
+                None
+            } else {
+                Some(state.current_main_instance.clone())
+            },
+            instance1_running: state.instance1_proc.is_some(),
+            instance2_running: state.instance2_proc.is_some(),
+            update_in_progress: state.update_in_progress,
+            queued_update_requests: state.queued_update_waiters.len(),
+        }
+    }
+
+    pub async fn shutdown() {
+        tracing::info!(target: "supervisor", "Shutting down runtime instances");
+
+        Self::terminate_instance("1").await;
+        Self::terminate_instance("2").await;
+
+        {
+            let mut state = STATE.write().unwrap();
+            state.current_main_instance.clear();
+            state.update_in_progress = false;
+            state.queued_update_waiters.clear();
+        }
+
+        let cleanup_instances_proc = utils::run_cmd_with_logs(
+            "/usr/local/share/supervisor/scripts/cleanup_instances.sh",
+            &[],
+            &[],
+        );
+        if let Err(e) = cleanup_instances_proc.wait().await {
+            eprintln!("Error cleaning up instances during shutdown: {}", e);
+        }
     }
 
     fn queue_update_request() -> Option<oneshot::Receiver<()>> {
