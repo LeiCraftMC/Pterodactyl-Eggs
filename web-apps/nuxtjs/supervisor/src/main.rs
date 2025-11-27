@@ -19,6 +19,8 @@ fn init_tracing() {
 #[tokio::main]
 async fn main() {
     init_tracing();
+    
+    instance_handler::InstanceHandler::startup().await;
 
     let proxy_task = tokio::task::spawn_blocking(|| proxy::start_proxy());
     let api_task = tokio::spawn(async {

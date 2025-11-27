@@ -3,7 +3,7 @@ use tokio::{
     process::Command,
 };
 
-pub async fn spawn_with_logs(
+pub async fn run_cmd_with_logs(
     cmd: &str,
     args: &[&str],
     env: &[(&str, &str)],
