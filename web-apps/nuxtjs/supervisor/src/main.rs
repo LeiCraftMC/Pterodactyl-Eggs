@@ -1,13 +1,12 @@
 // import start_api from ./api.ra
-mod api;
-mod proxy;
+pub mod proxy;
+pub mod api;
 
-use tracing_subscriber::fmt::format::FmtSpan;
 use tracing_subscriber::EnvFilter;
+use tracing_subscriber::fmt::format::FmtSpan;
 
 fn init_tracing() {
-    let filter = EnvFilter::try_from_default_env()
-        .unwrap_or_else(|_| EnvFilter::new("info")); // fallback to debug level
+    let filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("info")); // fallback to debug level
 
     tracing_subscriber::fmt()
         .with_env_filter(filter)
