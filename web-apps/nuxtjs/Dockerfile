@@ -13,6 +13,6 @@ WORKDIR /home/container
     
 COPY ./entrypoint.sh /entrypoint.sh
 COPY ./supervisor/scripts /usr/local/share/supervisor/scripts
-RUN chmod +x /entrypoint.sh /usr/local/share/supervisor/scripts/*
+# RUN chmod +x /entrypoint.sh /usr/local/share/supervisor/scripts/*
 
 CMD ["/bin/bash", "/entrypoint.sh"]
