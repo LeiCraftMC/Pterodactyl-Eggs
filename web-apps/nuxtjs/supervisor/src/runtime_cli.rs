@@ -131,7 +131,7 @@ fn print_queue() {
 
 async fn handle_stop() {
     println!("[supervisor] Stop requested. Shutting down instances...");
-    InstanceHandler::shutdown().await;
+    // InstanceHandler::shutdown().await;
     println!("[supervisor] Shutdown complete. Exiting runtime.");
     std::process::exit(0);
 }
