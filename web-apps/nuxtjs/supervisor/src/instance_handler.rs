@@ -71,7 +71,7 @@ impl InstanceHandler {
         Self::start_instance("1").await;
     }
 
-    pub async fn onUpdate() {
+    pub async fn on_update() {
         if let Some(rx) = Self::queue_update_request() {
             if rx.await.is_err() {
                 eprintln!("Update request was cancelled before execution");
@@ -168,12 +168,16 @@ impl InstanceHandler {
         tokio::time::sleep(std::time::Duration::from_secs(10)).await;
 
         //update reverse proxy to point to new instance
-        proxy::set_world_backend(if new_main_instance == "1" {
+        if let Err(err) = proxy::set_world_backend(if new_main_instance == "1" {
             "127.0.0.1:19131"
         } else {
             "127.0.0.1:19132"
-        })
-        .await;
+        }) {
+            eprintln!(
+                "Error updating reverse proxy to instance {}: {}",
+                new_main_instance, err
+            );
+        }
 
         // stop the old instance
         Self::terminate_instance(old_main_instance.as_str()).await;
@@ -223,33 +227,25 @@ impl InstanceHandler {
         }
     }
 
-    async fn get_current_main_instance() -> String {
-        let state = STATE.read().unwrap();
-        state.current_main_instance.clone()
-    }
-
-    async fn get_current_instance_proc() -> Option<utils::CommandHandle> {
-        let state = STATE.read().unwrap();
-        if state.current_main_instance == "1" {
-            state.instance1_proc.as_ref().cloned()
-        } else if state.current_main_instance == "2" {
-            state.instance2_proc.as_ref().cloned()
-        } else {
-            None
-        }
-    }
+    // async fn get_current_main_instance() -> String {
+    //     let state = STATE.read().unwrap();
+    //     state.current_main_instance.clone()
+    // }
 
     async fn terminate_instance(instance_number: &str) {
-        let mut state = STATE.write().unwrap();
+        let proc = {
+            let mut state = STATE.write().unwrap();
+            if instance_number == "1" {
+                state.instance1_proc.take()
+            } else if instance_number == "2" {
+                state.instance2_proc.take()
+            } else {
+                None
+            }
+        };
 
-        if instance_number == "1" {
-            if let Some(proc) = state.instance1_proc.take() {
-                proc.kill().await;
-            }
-        } else if instance_number == "2" {
-            if let Some(proc) = state.instance2_proc.take() {
-                proc.kill().await;
-            }
+        if let Some(mut proc) = proc {
+            let _ = proc.kill().await;
         }
     }
 }

@@ -42,7 +42,7 @@ async fn webhook_update(Query(query): Query<AuthQuery>) -> Response {
     }
 
     // shedule update
-    instance_handler::InstanceHandler::onUpdate().await;
+    instance_handler::InstanceHandler::on_update().await;
 
     let response = WebhookUpdateResponse {
         success: true,
