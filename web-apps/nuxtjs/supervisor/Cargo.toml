@@ -1,0 +1,25 @@
+[package]
+name = "supervisor"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Web framework
+axum = "0.8.7"
+
+hyper = { version = "1.0.0", features = ["full"] }
+hyper-util = { version = "0.1.1", features = ["client-legacy"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+
+# HTTP client for proxying requests
+#reqwest = { version = "0.11", features = ["json"] }
+
+# Serialization/Deserialization for the webhook body
+#serde = { version = "1.0", features = ["derive"] }
+#serde_json = "1.0"
+
+# Logging/Tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
