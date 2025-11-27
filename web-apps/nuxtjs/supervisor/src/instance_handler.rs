@@ -26,5 +26,11 @@ impl InstanceHandler {
         if let Err(e) = create_new_build_proc.wait().await {
             eprintln!("Error creating new build: {}", e);
         }
+        
+        let cleanup_instances_proc = utils::run_cmd_with_logs("/usr/local/share/supervisor/scripts/cleanup_instances.sh", &[], &[]);
+        if let Err(e) = cleanup_instances_proc.wait().await {
+            eprintln!("Error cleaning up instances: {}", e);
+        }
+
     }
 }

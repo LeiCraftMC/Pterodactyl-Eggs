@@ -33,6 +33,8 @@ function install_or_update_bun {
 function create_directories {
     mkdir -p /home/container/.app/
     mkdir -p /home/container/.app/tmp
+    mkdir -p /home/container/.app/instance/1/
+    mkdir -p /home/container/.app/instance/2/
 }
 
 

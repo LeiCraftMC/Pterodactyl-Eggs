@@ -26,6 +26,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Cargo
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: cd to nuxtjs supervisor directory
+        run: cd web-apps/nuxtjs/supervisor
+
+      - name: Build nuxtjs supervisor
+        run: cargo build --release
+
+      - name: cd back to nuxtjs directory
+        run: cd ../../..
+
       - name: Docker build and push
         uses: ./.github/workflows/docker-build-and-push
         with:
