@@ -45,10 +45,46 @@ impl InstanceHandler {
         {
             let mut state = STATE.write().unwrap();
             state.current_main_instance = "1".to_string();
-            state.instance1_proc = Some(utils::run_cmd_with_logs("/home/container/.app/instance/1/server/index.mjs", &[], &[
+        }
+
+        Self::start_instance("1").await;
+    }
+
+    async fn start_instance(instance_number: &str) {
+
+        let mut state = STATE.write().unwrap();
+
+        let instance_path = format!(
+            "/home/container/.app/instance/{}/server/index.mjs",
+            instance_number
+        );
+
+        if instance_number == "1" {
+            
+            // check if instance1_proc is already running, if so, error out
+            if state.instance1_proc.is_some() {
+                eprintln!("Instance 1 is already running.");
+                return;
+            }
+
+            state.instance1_proc = Some(utils::run_cmd_with_logs(instance_path.as_str(), &[], &[
                 ("NITRO_PORT", "19131"),
+                ("NITRO_HOST", "127.0.0.1")
+            ]));
+
+        } else if instance_number == "2" {
+
+            // check if instance2_proc is already running, if so, error out
+            if state.instance2_proc.is_some() {
+                eprintln!("Instance 2 is already running.");
+                return;
+            }
+
+            state.instance2_proc = Some(utils::run_cmd_with_logs(instance_path.as_str(), &[], &[
+                ("NITRO_PORT", "19132"),
                 ("NITRO_HOST", "127.0.0.1")
             ]));
         }
     }
+
 }

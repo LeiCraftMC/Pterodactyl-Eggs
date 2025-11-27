@@ -54,13 +54,12 @@ function clone_git_repo_if_needed {
         FULL_GIT_REPO_URL="${GIT_REPO_URL}.git"
     fi
 
-    if [ -z "${GIT_USERNAME}" ] && [ -n "${GIT_ACCESS_TOKEN}" ]; then
+    if [ -z "${GIT_USERNAME}" ] && [ -z "${GIT_ACCESS_TOKEN}" ]; then
         FULL_GIT_REPO_URL="https://${GIT_USERNAME}:${GIT_ACCESS_TOKEN}@$(echo -e ${GIT_REPO_URL} | cut -d/ -f3-)"
     fi
 
     if [ ! -d "/home/container/app" ]; then
         echo "Cloning Git repository from ${GIT_REPO_URL}..."
-        echo $FULL_GIT_REPO_URL
         if [ -n "${GIT_BRANCH}" ]; then
             git clone --single-branch --branch "${GIT_BRANCH}" "${FULL_GIT_REPO_URL}" /home/container/.app/git-repo
         else
