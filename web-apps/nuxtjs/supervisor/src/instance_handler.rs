@@ -16,10 +16,15 @@ pub struct InstanceHandler {}
 
 impl InstanceHandler {
     pub async fn startup() {
-        let sleep_proc = utils::run_cmd_with_logs("sleep", &["5"], &[]);
-        sleep_proc.wait().await.unwrap();
 
-        let echo_proc = utils::run_cmd_with_logs("echo", &["Hello, world!"], &[]);
-        echo_proc.detach();
+        let pull_latest_git_changes_proc = utils::run_cmd_with_logs("/usr/local/share/supervisor/scripts/pull_latest_git_changes.sh", &[], &[]);
+        if let Err(e) = pull_latest_git_changes_proc.wait().await {
+            eprintln!("Error pulling latest git changes: {}", e);
+        }
+
+        let create_new_build_proc = utils::run_cmd_with_logs("/usr/local/share/supervisor/scripts/create_new_build.sh", &[], &[]);
+        if let Err(e) = create_new_build_proc.wait().await {
+            eprintln!("Error creating new build: {}", e);
+        }
     }
 }
