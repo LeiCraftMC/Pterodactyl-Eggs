@@ -54,7 +54,7 @@ function clone_git_repo_if_needed {
         FULL_GIT_REPO_URL="${GIT_REPO_URL}.git"
     fi
 
-    if [ -z "${GIT_USERNAME}" ] && [ -z "${GIT_ACCESS_TOKEN}" ]; then
+    if [ -n "${GIT_USERNAME}" ] && [ -n "${GIT_ACCESS_TOKEN}" ]; then
         FULL_GIT_REPO_URL="https://${GIT_USERNAME}:${GIT_ACCESS_TOKEN}@$(echo -e ${GIT_REPO_URL} | cut -d/ -f3-)"
     fi
 
