@@ -108,11 +108,11 @@ function create_directories {
     fi
 
     if [ ! -f /home/container/bedrock-connect/custom_servers.json ]; then
-        echo "{}" > /home/container/bedrock-connect/custom_servers.json
+        echo "[]" > /home/container/bedrock-connect/custom_servers.json
     fi
 
     if [ ! -f /home/container/bedrock-connect/featured_server_ips.json ]; then
-        echo "{}" > /home/container/bedrock-connect/featured_server_ips.json
+        echo "[]" > /home/container/bedrock-connect/featured_server_ips.json
     fi
 
     if [ ! -f /home/container/bedrock-connect/language.json ]; then
