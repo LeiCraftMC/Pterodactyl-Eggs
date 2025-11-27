@@ -82,6 +82,8 @@ function main {
 
     clone_git_repo_if_needed
 
+    export SUPERVISOR_PROXY_LISTEN="0.0.0.0${SERVER_PORT}"
+
     # Extract Startup CMD
     STARTUP_CMD=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 
