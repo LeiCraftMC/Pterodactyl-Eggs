@@ -102,8 +102,8 @@ function create_directories {
     mkdir -p /home/container/mcxboxbroadcast
 
     if [ ! -f /home/container/bedrock-connect/config.yml ]; then
-        echo "custom_servers: '/home/container/bedrock-connect/custom_servers.json'" > /home/container/bedrock-connect/config.yml
-        echo "language: '/home/container/bedrock-connect/language.json'" >> /home/container/bedrock-connect/config.yml
+        echo "# custom_servers: '/home/container/bedrock-connect/custom_servers.json'" > /home/container/bedrock-connect/config.yml
+        echo "# language: '/home/container/bedrock-connect/language.json'" >> /home/container/bedrock-connect/config.yml
         echo "# whitelist: /home/container/bedrock-connect/whitelist.txt" >> /home/container/bedrock-connect/config.yml
         echo "# motd: /home/container/bedrock-connect/motd.txt" >> /home/container/bedrock-connect/config.yml
     fi
@@ -116,11 +116,11 @@ function create_directories {
         echo "{}" > /home/container/bedrock-connect/language.json
     fi
 
-    if [ -f /home/container/bedrock-connect/whitelist.txt ]; then
+    if [ ! -f /home/container/bedrock-connect/whitelist.txt ]; then
         touch /home/container/bedrock-connect/whitelist.txt
     fi
 
-    if [ -f /home/container/bedrock-connect/motd.txt ]; then
+    if [ ! -f /home/container/bedrock-connect/motd.txt ]; then
         touch /home/container/bedrock-connect/motd.txt
     fi
 
