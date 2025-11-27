@@ -104,8 +104,8 @@ function create_directories {
     if [ ! -f /home/container/bedrock-connect/config.yml ]; then
         echo "custom_servers: '/home/container/bedrock-connect/custom_servers.json'" > /home/container/bedrock-connect/config.yml
         echo "language: '/home/container/bedrock-connect/language.json'" >> /home/container/bedrock-connect/config.yml
-        echo "whitelist: /home/container/bedrock-connect/whitelist.txt" >> /home/container/bedrock-connect/config.yml
-        echo "motd: /home/container/bedrock-connect/motd.txt" >> /home/container/bedrock-connect/config.yml
+        echo "# whitelist: /home/container/bedrock-connect/whitelist.txt" >> /home/container/bedrock-connect/config.yml
+        echo "# motd: /home/container/bedrock-connect/motd.txt" >> /home/container/bedrock-connect/config.yml
     fi
 
     if [ ! -f /home/container/bedrock-connect/custom_servers.json ]; then
