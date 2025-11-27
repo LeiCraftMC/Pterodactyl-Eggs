@@ -33,14 +33,11 @@ jobs:
           profile: minimal
           override: true
 
-      - name: cd to nuxtjs supervisor directory
-        run: cd web-apps/nuxtjs/supervisor
-
       - name: Build nuxtjs supervisor
-        run: cargo build --release
-
-      - name: cd back to nuxtjs directory
-        run: cd ../../..
+        run: |
+          cd web-apps/nuxtjs/supervisor
+          cargo build --release
+          cd ../../..
 
       - name: Docker build and push
         uses: ./.github/workflows/docker-build-and-push
