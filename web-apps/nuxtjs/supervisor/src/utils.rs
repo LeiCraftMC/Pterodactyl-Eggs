@@ -27,11 +27,7 @@ impl CommandHandle {
     }
 }
 
-pub fn run_cmd_with_logs(
-    cmd: &str,
-    args: &[&str],
-    env: &[(&str, &str)],
-) -> CommandHandle {
+pub fn run_cmd_with_logs(cmd: &str, args: &[&str], env: &[(&str, &str)]) -> CommandHandle {
     let child_result = Command::new(cmd)
         .args(args)
         .envs(env.iter().copied())
@@ -78,9 +74,7 @@ pub fn run_cmd_with_logs(
             tracing::error!("could not spawn process {}: {}", cmd, err);
 
             // Dummy child that immediately exits with status 1
-            let dummy_child = Command::new("true")
-                .spawn()
-                .expect("failed to spawn dummy");
+            let dummy_child = Command::new("true").spawn().expect("failed to spawn dummy");
 
             // Log task that does nothing
             let dummy_task = tokio::spawn(async {});

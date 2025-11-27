@@ -6,6 +6,7 @@ use axum::{
     routing::post,
 };
 use serde::{Deserialize, Serialize};
+use crate::instance_handler;
 
 pub async fn start_api() {
     let app = Router::new().route("/_supervisor/webhook/update", post(webhook_update));
@@ -40,9 +41,12 @@ async fn webhook_update(Query(query): Query<AuthQuery>) -> Response {
         return (StatusCode::UNAUTHORIZED, Json(body)).into_response();
     }
 
+    // shedule update
+    instance_handler::InstanceHandler::onUpdate().await;
+
     let response = WebhookUpdateResponse {
         success: true,
-        message: format!("Update received successfully"),
+        message: format!("Update was added to the queue and will be processed shortly."),
     };
 
     (StatusCode::OK, Json(response)).into_response()
