@@ -1,13 +1,14 @@
 use axum::{
-    Json, Router, http::StatusCode, response::{IntoResponse, Response}, routing::post, extract::Query
+    Json, Router,
+    extract::Query,
+    http::StatusCode,
+    response::{IntoResponse, Response},
+    routing::post,
 };
 use serde::{Deserialize, Serialize};
 
 pub async fn start_api() {
-    tracing_subscriber::fmt::init();
-
-    let app = Router::new()
-        .route("/webhook/update", post(webhook_update));
+    let app = Router::new().route("/webhook/update", post(webhook_update));
 
     let listener = tokio::net::TcpListener::bind("127.0.0.1:19180")
         .await
@@ -16,7 +17,6 @@ pub async fn start_api() {
     tracing::info!("api listening on {}", listener.local_addr().unwrap());
     axum::serve(listener, app).await.unwrap();
 }
-
 
 #[derive(Deserialize)]
 struct AuthQuery {
@@ -51,7 +51,7 @@ async fn webhook_update(Query(query): Query<AuthQuery>) -> Response {
 #[derive(Serialize)]
 struct WebhookUpdateResponse {
     success: bool,
-    message: String
+    message: String,
 }
 
 #[derive(Serialize)]
