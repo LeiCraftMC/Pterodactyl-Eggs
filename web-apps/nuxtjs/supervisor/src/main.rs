@@ -1,6 +1,8 @@
 // import start_api from ./api.ra
-pub mod proxy;
 pub mod api;
+pub mod proxy;
+pub mod utils;
+pub mod instance_handler;
 
 use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;

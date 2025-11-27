@@ -5,7 +5,7 @@ use std::{
 
 use async_trait::async_trait;
 use once_cell::sync::Lazy;
-use pingora::{prelude::*, upstreams::peer::Peer};
+use pingora::prelude::*;
 
 const DEFAULT_LISTEN_ADDR: &str = "0.0.0.0:19130";
 const DEFAULT_WORLD_BACKEND: &str = "127.0.0.1:19131";

@@ -80,9 +80,6 @@ function main {
 
     clone_git_repo_if_needed
 
-    /usr/local/share/supervisor/scripts/pull_latest_git_changes.sh
-    /usr/local/share/supervisor/scripts/create_new_build.sh
-
     # Extract Startup CMD
     STARTUP_CMD=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 

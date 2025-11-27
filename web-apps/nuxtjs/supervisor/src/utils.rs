@@ -1,12 +1,16 @@
 use tokio::{
     io::{AsyncBufReadExt, BufReader},
-    process::{Child, Command},
+    process::Command,
 };
 
-pub async fn spawn_with_logs(cmd: &str, args: &[&str], env: &[(&str, &str)]) -> tokio::task::JoinHandle<()> {
+pub async fn spawn_with_logs(
+    cmd: &str,
+    args: &[&str],
+    env: &[(&str, &str)],
+) -> tokio::task::JoinHandle<()> {
     let mut child = Command::new(cmd)
         .args(args)
-        .envs(env)
+        .envs(env.iter().copied())
         .stdout(std::process::Stdio::piped())
         .stderr(std::process::Stdio::piped())
         .spawn()
