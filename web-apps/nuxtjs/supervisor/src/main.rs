@@ -1,8 +1,8 @@
 // import start_api from ./api.ra
 pub mod api;
+pub mod instance_handler;
 pub mod proxy;
 pub mod utils;
-pub mod instance_handler;
 
 use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
@@ -19,7 +19,7 @@ fn init_tracing() {
 #[tokio::main]
 async fn main() {
     init_tracing();
-    
+
     instance_handler::InstanceHandler::startup().await;
 
     let proxy_task = tokio::task::spawn_blocking(|| proxy::start_proxy());
