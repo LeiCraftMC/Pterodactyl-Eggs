@@ -246,6 +246,7 @@ impl InstanceHandler {
             "/home/container/.app/instance/{}/server/index.mjs",
             instance_number
         );
+        let instance_args = [instance_path.as_str()];
 
         if instance_number == "1" {
             // check if instance1_proc is already running, if so, error out
@@ -255,8 +256,8 @@ impl InstanceHandler {
             }
 
             state.instance1_proc = Some(utils::run_cmd_with_logs(
-                instance_path.as_str(),
-                &[],
+                "bun",
+                &instance_args,
                 &[("NITRO_PORT", "19131"), ("NITRO_HOST", "127.0.0.1")],
             ));
         } else if instance_number == "2" {
@@ -267,8 +268,8 @@ impl InstanceHandler {
             }
 
             state.instance2_proc = Some(utils::run_cmd_with_logs(
-                instance_path.as_str(),
-                &[],
+                "bun",
+                &instance_args,
                 &[("NITRO_PORT", "19132"), ("NITRO_HOST", "127.0.0.1")],
             ));
         }
