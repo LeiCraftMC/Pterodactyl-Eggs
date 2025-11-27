@@ -1,6 +1,6 @@
-FROM alpine
+FROM debian:stable-slim
 
-RUN apk add --no-cache --update tzdata curl ca-certificates git tar bash jq \
+RUN apt-get update && apt-get install -y tzdata curl ca-certificates git tar bash jq \
     && adduser --disabled-password --home /home/container container
 
 COPY ./supervisor/target/release/supervisor /usr/bin/supervisor

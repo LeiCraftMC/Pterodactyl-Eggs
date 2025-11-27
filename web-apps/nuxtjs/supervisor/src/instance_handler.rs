@@ -46,8 +46,8 @@ impl InstanceHandler {
             let mut state = STATE.write().unwrap();
             state.current_main_instance = "1".to_string();
             state.instance1_proc = Some(utils::run_cmd_with_logs("/home/container/.app/instance/1/server/index.mjs", &[], &[
-                ("NITRO_PORT", "3000"),
-                ("NITRO_HOST", "0.0.0.0")
+                ("NITRO_PORT", "19131"),
+                ("NITRO_HOST", "127.0.0.1")
             ]));
         }
     }
