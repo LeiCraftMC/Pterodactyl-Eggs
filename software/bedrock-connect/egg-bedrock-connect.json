@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-08-31T01:21:15+02:00",
+    "exported_at": "2025-11-27T01:10:33+01:00",
     "name": "Bedrock Connect",
     "author": "leicraft@leicraftmc.de",
     "description": null,
@@ -13,7 +13,7 @@
         "Bedrock Connect Latest": "ghcr.io\/leicraftmc\/pterodactyl-eggs:bedrock-connect"
     },
     "file_denylist": [],
-    "startup": "supervisorctl",
+    "startup": "supervisorctl -s unix:\/\/\/tmp\/supervisor.sock",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Creation of Xbox LIVE session was successful!\"\r\n}",
