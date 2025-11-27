@@ -2,18 +2,18 @@ use crate::utils;
 use once_cell::sync::Lazy;
 use std::sync::RwLock;
 
-#[derive(Debug)]
+
 struct AppState {
-    currentMainInstance: String,
-    instance1Proc: Option<utils::CommandHandle>,
-    instance2Proc: Option<utils::CommandHandle>,
+    current_main_instance: String,
+    instance1_proc: Option<utils::CommandHandle>,
+    instance2_proc: Option<utils::CommandHandle>,
 }
 
 static STATE: Lazy<RwLock<AppState>> = Lazy::new(|| {
     RwLock::new(AppState {
-        currentMainInstance: "1".to_string(),
-        instance1Proc: None,
-        instance2Proc: None,
+        current_main_instance: "".to_string(),
+        instance1_proc: None,
+        instance2_proc: None,
     })
 });
 
@@ -44,7 +44,11 @@ impl InstanceHandler {
 
         {
             let mut state = STATE.write().unwrap();
-            state.instance1Proc = Some(utils::run_cmd_with_logs("/usr/local/share/supervisor/scripts/start_instance.sh", &["1"], &[]));
+            state.current_main_instance = "1".to_string();
+            state.instance1_proc = Some(utils::run_cmd_with_logs("/home/container/.app/instance/1/server/index.mjs", &[], &[
+                ("NITRO_PORT", "3000"),
+                ("NITRO_HOST", "0.0.0.0")
+            ]));
         }
     }
 }

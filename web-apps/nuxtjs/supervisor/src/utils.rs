@@ -40,7 +40,7 @@ pub fn run_cmd_with_logs(
         .spawn();
 
     // If the command failed, build a dummy handle that won't do anything
-    let (mut child, log_task) = match child_result {
+    let (child, log_task) = match child_result {
         Ok(mut c) => {
             // Normal successful case:
             let stdout = c.stdout.take().expect("no stdout");
