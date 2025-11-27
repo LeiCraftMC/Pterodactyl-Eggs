@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2025-11-27T01:10:33+01:00",
+    "exported_at": "2025-11-27T01:18:34+01:00",
     "name": "Bedrock Connect",
     "author": "leicraft@leicraftmc.de",
     "description": null,
@@ -18,7 +18,7 @@
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Creation of Xbox LIVE session was successful!\"\r\n}",
         "logs": "{}",
-        "stop": "^C"
+        "stop": "exit"
     },
     "scripts": {
         "installation": {
