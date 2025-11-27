@@ -62,16 +62,6 @@
             "field_type": "text"
         },
         {
-            "name": "Auto Update",
-            "description": "Pull the latest files on startup when using a GitHub repo.",
-            "env_variable": "AUTO_UPDATE",
-            "default_value": "0",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|boolean",
-            "field_type": "text"
-        },
-        {
             "name": "Additional Node packages",
             "description": "Install additional node packages.\r\n\r\nUse spaces to separate.",
             "env_variable": "NODE_PACKAGES",
