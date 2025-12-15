@@ -1,0 +1,38 @@
+name: Publish Software/pocketbase
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+    paths:
+      - 'software/pocketbase/**'
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - 'software/pocketbase/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Docker build and push
+        uses: ./.github/workflows/docker-build-and-push
+        with:
+          registry: ghcr.io
+          image-name: leicraftmc/pterodactyl-eggs
+          image-tag: pocketbase
+          context: ./software/pocketbase
+          username: ${{ github.actor }}
+          gh-token: ${{ secrets.PAT  }}
+
