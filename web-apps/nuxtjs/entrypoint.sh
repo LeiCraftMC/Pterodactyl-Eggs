@@ -18,7 +18,7 @@ function install_or_update_bun {
         curl -fsSL https://bun.sh/install | bash
     else
         echo "Bun found. Updating Bun to the latest version..."
-        /home/container/.bun/bin/bun upgrade
+        yes | /home/container/.bun/bin/bun upgrade
     fi
 
     if [ $? -ne 0 ]; then
