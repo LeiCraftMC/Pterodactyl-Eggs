@@ -13,14 +13,17 @@
 # SUPERVISOR_API_KEY - The API key for authenticating requests to the supervisor API.
 
 function install_or_update_bun {
-    if [ ! -f /home/container/.bun/bin/bun ]; then
-        echo "Bun not found. Installing Bun..."
-        curl -fsSL https://bun.sh/install | bash
-    else
-        echo "Bun found. Updating Bun to the latest version..."
-        yes | /home/container/.bun/bin/bun upgrade
-    fi
+    #if [ ! -f /home/container/.bun/bin/bun ]; then
+    #    echo "Bun not found. Installing Bun..."
+    #    curl -fsSL https://bun.sh/install | bash
+    #else
+    #    echo "Bun found. Updating Bun to the latest version..."
+    #    yes | /home/container/.bun/bin/bun upgrade
+    #fi
 
+    echo "Installing Bun..."
+    curl -fsSL https://bun.sh/install | bash
+    
     if [ $? -ne 0 ]; then
         echo "Bun installation or update failed!"
         exit 1
