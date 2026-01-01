@@ -55,6 +55,7 @@ async fn handle_command(cmd_line: &str) {
         "instances" => print_instances(),
         "backend" => print_backend(),
         "queue" => print_queue(),
+        "update" => handle_update().await,
         "stop" | "shutdown" => handle_stop().await,
         other => println!("[supervisor] Unknown command '{other}'. Type 'help' for options."),
     }
@@ -67,6 +68,7 @@ fn print_help() {
     println!("  instances   Show instance-level information");
     println!("  backend     Show active world backend address");
     println!("  queue       Show update queue information");
+    println!("  update      Trigger an update sequence");
     println!("  stop        Stop both instances and exit the supervisor");
 }
 
@@ -134,6 +136,12 @@ async fn handle_stop() {
     InstanceHandler::shutdown().await;
     println!("[supervisor] Shutdown complete. Exiting runtime.");
     std::process::exit(0);
+}
+
+async fn handle_update() {
+    println!("[supervisor] Update requested.");
+    InstanceHandler::on_update().await;
+    println!("[supervisor] Update added to queue.");
 }
 
 fn bool_to_icon(flag: bool) -> &'static str {

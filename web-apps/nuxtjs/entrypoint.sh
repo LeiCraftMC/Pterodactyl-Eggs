@@ -84,6 +84,9 @@ function main {
 
     clone_git_repo_if_needed
 
+    # Load environment variables from .env file
+    export $(grep -v '^#' /home/container/.env | xargs)
+
     export SUPERVISOR_PROXY_LISTEN="0.0.0.0:${SERVER_PORT}"
 
     # Extract Startup CMD
