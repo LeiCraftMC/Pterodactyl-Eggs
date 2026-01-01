@@ -36,7 +36,7 @@ pub struct InstanceStatus {
 pub struct InstanceHandler {}
 
 impl InstanceHandler {
-    pub async fn startup() -> () {
+    pub async fn startup() {
         let pull_latest_git_changes_proc = utils::run_cmd_with_logs(
             "/usr/local/share/supervisor/scripts/pull_latest_git_changes.sh",
             &[],
@@ -295,7 +295,7 @@ impl InstanceHandler {
                 &[("NITRO_PORT", "19132"), ("NITRO_HOST", "127.0.0.1")],
             ));
         }
-        return true;
+        true
     }
 
     // async fn get_current_main_instance() -> String {
@@ -348,13 +348,14 @@ impl InstanceHandler {
         let port = if instance_number == "1" { 19131 } else { 19132 };
 
         let url = format!("http://127.0.0.1:{}", port);
-        let response = reqwest::get(&url).await;
-        if response.is_err() {
-            return false;
-        }
+        let response = match reqwest::get(&url).await {
+            Ok(resp) => resp,
+            Err(_) => return false,
+        };
 
+        let status = response.status().as_u16();
         let healthy_codes = [200..=299, 300..=399, 400..=405];
-        return healthy_codes.iter().any(|range: &std::ops::RangeInclusive<u16>| range.contains(&response.as_ref().unwrap().status().as_u16()))
+        healthy_codes.iter().any(|range| range.contains(&status))
     }
 
 }

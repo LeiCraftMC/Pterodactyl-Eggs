@@ -46,21 +46,21 @@ pub fn run_cmd_with_logs(cmd: &str, args: &[&str], env: &[(&str, &str)]) -> Comm
             let task = tokio::spawn(async move {
                 let mut out_reader = BufReader::new(stdout).lines();
                 let mut err_reader = BufReader::new(stderr).lines();
+                let mut stdout_done = false;
+                let mut stderr_done = false;
 
-                loop {
+                while !stdout_done || !stderr_done {
                     tokio::select! {
-                        line = out_reader.next_line() => {
-                            if let Ok(Some(l)) = line {
-                                println!("{} {}", prefix, l);
-                            } else {
-                                break;
+                        line = out_reader.next_line(), if !stdout_done => {
+                            match line {
+                                Ok(Some(l)) => println!("{} {}", prefix, l),
+                                _ => stdout_done = true,
                             }
                         }
-                        line = err_reader.next_line() => {
-                            if let Ok(Some(l)) = line {
-                                eprintln!("{} {}", prefix, l);
-                            } else {
-                                break;
+                        line = err_reader.next_line(), if !stderr_done => {
+                            match line {
+                                Ok(Some(l)) => eprintln!("{} {}", prefix, l),
+                                _ => stderr_done = true,
                             }
                         }
                     }

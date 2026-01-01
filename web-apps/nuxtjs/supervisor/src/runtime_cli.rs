@@ -139,9 +139,9 @@ async fn handle_stop() {
 }
 
 async fn handle_update() {
-    println!("[supervisor] Update requested.");
+    println!("[supervisor] Update requested. Starting update sequence...");
     InstanceHandler::on_update().await;
-    println!("[supervisor] Update added to queue.");
+    println!("[supervisor] Update sequence completed.");
 }
 
 fn bool_to_icon(flag: bool) -> &'static str {

@@ -46,7 +46,7 @@ async fn webhook_update(Query(query): Query<AuthQuery>) -> Response {
 
     let response = WebhookUpdateResponse {
         success: true,
-        message: format!("Update was added to the queue and will be processed shortly."),
+        message: "Update was added to the queue and will be processed shortly.".to_string(),
     };
 
     (StatusCode::OK, Json(response)).into_response()
