@@ -10,7 +10,22 @@
 # Pelican or Pterodactyl panel instead.
 ################################################################################
 
-DOWNLOADER="./hytale-downloader-linux-amd64"
+
+function check_cpu_arch {
+    local arch=$(uname -m)
+    if [ "$arch" = "x86_64" ]; then
+        declare -g ARCH="linux_amd64"
+    elif [ "$arch" = "aarch64" ]; then
+        declare -g ARCH="linux_arm64"
+    else
+        echo "Unsupported architecture: $arch"
+        exit 1
+    fi
+}
+
+check_cpu_arch
+DOWNLOADER="./hytale-downloader-$ARCH"
+
 AUTH_CACHE_FILE=".hytale-auth-tokens.json"
 
 # Function to extract downloaded server files
