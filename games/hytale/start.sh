@@ -14,9 +14,9 @@
 function check_cpu_arch {
     local arch=$(uname -m)
     if [ "$arch" = "x86_64" ]; then
-        declare -g ARCH="linux_amd64"
+        declare -g ARCH="linux-amd64"
     elif [ "$arch" = "aarch64" ]; then
-        declare -g ARCH="linux_arm64"
+        declare -g ARCH="linux-arm64"
     else
         echo "Unsupported architecture: $arch"
         exit 1
