@@ -1,0 +1,7 @@
+custom_servers: '/home/container/bedrock-connect/custom_servers.json'
+language: '/home/container/bedrock-connect/language.json'
+motd_first_join: true
+featured_servers: false
+
+# whitelist: /home/container/bedrock-connect/whitelist.txt
+# motd: /home/container/bedrock-connect/motd.txt

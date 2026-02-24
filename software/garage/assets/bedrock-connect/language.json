@@ -1,0 +1,71 @@
+{
+  "motd": {
+    "heading": "Server Connector",
+    "continueBtn": "Weiter zur Serverliste"
+  },
+  "serverInfo": {
+    "motd": "Server Connector",
+    "subMotd": "LeiCraftBE"
+  },
+  "main": {
+    "heading": "Server Connector",
+    "message": "",
+    "connectBtn" : "Einem Server beitreten",
+    "manageBtn" : "Serverliste verwalten",
+    "exitBtn": "Verlassen und zum Hauptmenü zurückkehren"
+  },
+  "manage": {
+    "heading": "Serverliste verwalten",
+    "addBtn": "Server hinzufügen",
+    "removeBtn": "Server entfernen",
+    "editBtn": "Server bearbeiten"
+  },
+  "connect": {
+    "heading": "Einem Server beitreten",
+    "addressTitle": "Serveradresse",
+    "addressPlaceholder": "Serveradresse (z.B. leicraft.de oder 1.0.0.1)",
+    "portTitle": "Port",
+    "portPlaceholder": "Server Port eingeben",
+    "displayNameTitle": "(Optional) Anzeigename in der Serverliste",
+    "addToggle": "Zur Serverliste hinzufügen"
+  },
+  "add": {
+    "heading": "Füge einen Server hinzu"
+  },
+  "edit": {
+    "heading": "Server bearbeiten",
+    "chooseHeading": "Server auswählen",
+    "serverDropdown": "Servers"
+  },
+  "remove": {
+    "heading": "Server entfernen",
+    "serverDropdown": "Servers"
+  },
+  "serverGroup": {
+    "backBtn": "Zur Serverliste zurückkehren"
+  },
+  "retriggerMsg": {
+    "tip": "Ducken oder schlagen, um das Popup erneut auszulösen.",
+    "chat": "\n\n\n\n\n\n\n\n\n\n\n\n\n\nDucken oder schlagen, um das Popup erneut auszulösen.\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  "error": {
+    "heading": "Error",
+    "addressLarge": "Die Adresse ist zu lang. (Sie darf maximal 253 Zeichen lang sein)",
+    "portLarge": "Der Port ist zu lang. (Darf nur weniger als 10 Zeichen lang sein)",
+    "nameLarge": "Der Anzeigename ist zu lang. (Er darf maximal 36 Zeichen lang sein)",
+    "invalidAddress": "Geben Sie eine gültige Adresse ein. (z.B. leicraft.de oder 1.0.0.1)",
+    "invalidPort": "Geben Sie einen gültigen Port ein, der nur Zahlen enthält",
+    "invalidName": "Der Anzeigename darf nur Buchstaben, Zahlen und Leerzeichen zwischen den Zeichen enthalten",
+    "serverLimit": "Sie haben die maximale Anzahl von %MAX_SERVERS% Servern in Ihrer Serverliste erreicht. Entfernen Sie Server, um weitere hinzuzufügen.",
+    "invalidUserServer": "Ungültige Serveradresse",
+    "invalidServerConnect": "Bitte geben Sie eine gültige Adresse und einen gültigen Port ein.",
+    "invalidServerRemove": "Ungültiger Server zum Entfernen",
+    "invalidServerEdit": "Ungültiger Server zum Bearbeiten",
+    "transferError": "Fehler beim Verbinden mit dem Server. Ungültige Adresse."
+  },
+  "disconnect": {
+    "inactivity": "Wegen Inaktivität gekicked",
+    "exit": "Server Connector verlassen",
+    "dataError": "Es gab Probleme beim Empfang Ihrer Spielerdaten. Bitte melden Sie dies an support@leicraftmc.de, falls das Problem weiterhin besteht."
+  }
+}

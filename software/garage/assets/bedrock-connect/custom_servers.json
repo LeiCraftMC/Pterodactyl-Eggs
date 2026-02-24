@@ -1,0 +1,14 @@
+[
+	{
+		"name": "LeiCraft_MC",
+		"iconUrl": "https://mc-assets.web.s3.leicraftmc.de/server/icons/leicraftmc.png",
+		"address": "mc.leicraftmc.de",
+		"port": 19132
+	},
+	{
+		"name": "Crossover",
+		"iconUrl": "https://mc-assets.web.s3.leicraftmc.de/server/icons/crossover.png",
+		"address": "crossover.is-on.net",
+		"port": 2011
+	}
+]
