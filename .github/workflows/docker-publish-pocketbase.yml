@@ -34,5 +34,5 @@ jobs:
           image-tag: pocketbase
           context: ./software/pocketbase
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.PAT  }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 

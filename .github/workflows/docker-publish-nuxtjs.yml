@@ -47,5 +47,5 @@ jobs:
           image-tag: nuxtjs
           context: ./web-apps/nuxtjs
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.PAT  }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 

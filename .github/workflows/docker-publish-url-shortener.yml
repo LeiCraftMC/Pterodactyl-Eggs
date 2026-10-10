@@ -34,5 +34,5 @@ jobs:
           image-tag: url-shortener
           context: ./software/url-shortener
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.PAT  }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 

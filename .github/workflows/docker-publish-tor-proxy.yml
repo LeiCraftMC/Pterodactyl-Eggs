@@ -34,5 +34,5 @@ jobs:
           image-tag: tor-proxy
           context: ./software/tor-proxy
           username: ${{ github.actor }}
-          gh-token: ${{ secrets.PAT  }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
 
